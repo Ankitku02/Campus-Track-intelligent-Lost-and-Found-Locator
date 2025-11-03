@@ -1,0 +1,5 @@
+package edu.infosys.lostAndFoundApplication.service;
+
+public class FoundItemService {
+
+}

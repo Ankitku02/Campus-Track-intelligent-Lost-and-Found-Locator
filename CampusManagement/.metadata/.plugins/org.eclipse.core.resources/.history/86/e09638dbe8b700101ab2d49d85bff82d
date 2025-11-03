@@ -1,0 +1,52 @@
+package edu.infosys.lostAndFoundApplication.controller;
+
+import edu.infosys.lostAndFoundApplication.bean.ChatMessage;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
+
+@RestController
+@RequestMapping("/api/chat")
+public class ChatController {
+
+    private final List<ChatMessage> messages = new ArrayList<>();
+    private final Set<String> onlineUsers = new HashSet<>();
+
+    @GetMapping("/messages")
+    public List<ChatMessage> getMessages() {
+        return messages;
+    }
+
+    @MessageMapping("/chat.sendMessage")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessage(ChatMessage message) {
+        message.setTimestamp(java.time.LocalDateTime.now());
+        messages.add(message);
+        return message;
+    }
+
+    @MessageMapping("/chat.addUser")
+    @SendTo("/topic/public")
+    public ChatMessage addUser(ChatMessage message) {
+        onlineUsers.add(message.getSender());
+        message.setContent(message.getSender() + " joined the chat");
+        message.setTimestamp(java.time.LocalDateTime.now());
+        return message;
+    }
+
+    @MessageMapping("/chat.leaveUser")
+    @SendTo("/topic/public")
+    public ChatMessage leaveUser(ChatMessage message) {
+        onlineUsers.remove(message.getSender());
+        message.setContent(message.getSender() + " left the chat");
+        message.setTimestamp(java.time.LocalDateTime.now());
+        return message;
+    }
+
+    @MessageMapping("/chat.onlineUsers")
+    @SendTo("/topic/online")
+    public Set<String> onlineUsers() {
+        return onlineUsers;
+    }
+}

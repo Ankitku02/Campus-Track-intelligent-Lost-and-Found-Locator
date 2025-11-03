@@ -1,0 +1,5 @@
+package edu.infosys.lostAndFoundApplication.controller;
+
+public class ChatRestController {
+
+}

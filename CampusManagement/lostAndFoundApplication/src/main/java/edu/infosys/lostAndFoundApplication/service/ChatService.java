@@ -1,0 +1,26 @@
+package edu.infosys.lostAndFoundApplication.service;
+
+import org.springframework.stereotype.Service;
+import edu.infosys.lostAndFoundApplication.bean.ChatMessage;
+import edu.infosys.lostAndFoundApplication.dao.ChatMessageRepository;
+
+import java.util.List;
+
+@Service
+public class ChatService {
+
+    private final ChatMessageRepository chatMessageRepository;
+
+    public ChatService(ChatMessageRepository chatMessageRepository) {
+        this.chatMessageRepository = chatMessageRepository;
+    }
+
+    public ChatMessage saveMessage(ChatMessage message) {
+        message.setTimestamp(java.time.LocalDateTime.now());
+        return chatMessageRepository.save(message);
+    }
+
+    public List<ChatMessage> getAllMessages() {
+        return chatMessageRepository.findAllByOrderByTimestampAsc();
+    }
+}
