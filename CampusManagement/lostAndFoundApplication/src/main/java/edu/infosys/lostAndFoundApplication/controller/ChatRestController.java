@@ -21,4 +21,3 @@ public class ChatRestController {
         return chatService.getAllMessages();
     }
 }
-

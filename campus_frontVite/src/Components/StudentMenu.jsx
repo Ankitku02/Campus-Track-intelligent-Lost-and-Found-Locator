@@ -49,7 +49,7 @@ const StudentMenu = () => {
     {
       title: "Chat",
       icon: MessageCircle,
-      items: [{ name: "Global Chat", href: "/StudentMenu/ChatRoom", icon: MessageCircle }],  // ✅ Fixed href to match App.js route
+      items: [{ name: "Global Chat", href: "/StudentMenu/ChatRoom", icon: MessageCircle }],
     },
   ];
 

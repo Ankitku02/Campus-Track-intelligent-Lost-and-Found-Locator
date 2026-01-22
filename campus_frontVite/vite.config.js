@@ -9,7 +9,7 @@ export default defineConfig({
     tailwindcss(),
   ],
   define: {
-    global: 'window',   // 👈 Fix for sockjs-client (WebSocket)
+    global: 'window',   //  Fix for sockjs-client (WebSocket)
   },
 })
 

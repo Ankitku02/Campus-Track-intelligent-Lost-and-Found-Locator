@@ -5,7 +5,7 @@ import LoginPage from "./Components/LoginComponent/LoginPage";
 import AdminMenu from "./Components/LoginComponent/AdminMenu";
 import SigninPage from "./Components/LoginComponent/SignupPage";
 import SingleStudentDetails from "./Components/LoginComponent/SingleStudentDetails";
-import StudentMenu from "./Components/StudentMenu";  // ✅ Corrected path (assuming src/Components/StudentMenu.jsx)
+import StudentMenu from "./Components/StudentMenu";  // ✅ Corrected path
 
 // 🔹 Item Components
 import LostItemSubmit from "./Components/ItemComponent/LostItemSubmit";
@@ -19,7 +19,7 @@ import MarkAsFound from "./Components/ItemComponent/MarkAsFound";
 import Personal from "./Components/LoginComponent/Personal";
 import StudentList from "./Components/LoginComponent/StudentList";
 import DeleteStudentList from "./Components/LoginComponent/DeleteStudentList";
-import ChatRoom from "./Components/ChatRoom";  // ✅ Assuming ChatRoom.jsx is in src/Components/
+import ChatRoom from "./Components/ChatRoom";  // ✅ ChatRoom import
 
 import "./App.css";
 
@@ -42,6 +42,10 @@ function App() {
           <Route path="Personal" element={<Personal />} />
           <Route path="ChatRoom" element={<ChatRoom />} />
         </Route>
+
+        {/* 🔹 Admin Report Routes (Added for AdminDashboard links) */}
+        <Route path="/LostReport" element={<LostItemReport />} />
+        <Route path="/FoundReport" element={<FoundItemReport />} />
 
         {/* 🔹 Miscellaneous Routes */}
         <Route path="/SingleStudentDetail" element={<SingleStudentDetails />} />

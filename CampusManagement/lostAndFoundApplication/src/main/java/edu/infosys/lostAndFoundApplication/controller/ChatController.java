@@ -27,6 +27,9 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+        if (chatMessage.getSender() == null || chatMessage.getSender().isEmpty()) {
+            chatMessage.setSender("Anonymous");
+        }
         chatMessage.setType("CHAT");
         chatService.saveMessage(chatMessage);
         return chatMessage;
@@ -36,10 +39,12 @@ public class ChatController {
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         String username = chatMessage.getSender();
-        headerAccessor.getSessionAttributes().put("username", username);
-        onlineUsers.add(username);
+        if (username != null && !username.isEmpty()) {
+            headerAccessor.getSessionAttributes().put("username", username);
+            onlineUsers.add(username);
+        }
         chatMessage.setType("JOIN");
-        chatMessage.setContent("👋 " + username + " joined the chat");
+        chatMessage.setContent(" " + username + " joined the chat");
         messagingTemplate.convertAndSend("/topic/online", onlineUsers);
         chatService.saveMessage(chatMessage);
         return chatMessage;
@@ -47,18 +52,15 @@ public class ChatController {
 
     @MessageMapping("/chat.leaveUser")
     @SendTo("/topic/public")
-    public ChatMessage removeUser(@Payload ChatMessage chatMessage) {
-        onlineUsers.remove(chatMessage.getSender());
+    public ChatMessage removeUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+        String username = chatMessage.getSender();
+        if (username != null) {
+            onlineUsers.remove(username);
+        }
         chatMessage.setType("LEAVE");
-        chatMessage.setContent("❌ " + chatMessage.getSender() + " left the chat");
+        chatMessage.setContent(" " + username + " left the chat");
         messagingTemplate.convertAndSend("/topic/online", onlineUsers);
         chatService.saveMessage(chatMessage);
         return chatMessage;
-    }
-
-    @MessageMapping("/chat.onlineUsers")
-    @SendTo("/topic/online")
-    public Set<String> onlineList() {
-        return onlineUsers;
     }
 }
