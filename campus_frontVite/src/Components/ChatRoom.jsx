@@ -17,14 +17,14 @@ const ChatRoom = () => {
   }, [messages]);
 
   useEffect(() => {
-    axios.get('http://localhost:9999/api/chat/messages')
+    axios.get('http://13.60.52.103:9999/api/chat/messages')
       .then(res => setMessages(res.data))
       .catch(console.error);
   }, []);
 
   const connect = () => {
     stompClient.current = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:9999/ws'),
+      webSocketFactory: () => new SockJS('http://13.60.52.103:9999/ws'),
       onConnect: () => {
         stompClient.current.subscribe('/topic/public', message => {
           const msg = JSON.parse(message.body);
