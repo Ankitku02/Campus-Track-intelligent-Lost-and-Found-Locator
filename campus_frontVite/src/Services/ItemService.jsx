@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:9999/lost-found";
+const BASE_URL = "http://13.60.52.103:9999/lost-found";
 
 // --- Lost Item Endpoints ---
 export const getAllLostItems = () => axios.get(`${BASE_URL}/lost-items`);
