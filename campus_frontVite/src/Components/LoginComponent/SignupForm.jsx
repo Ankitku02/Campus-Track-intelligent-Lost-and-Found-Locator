@@ -1,14 +1,3 @@
-import API_BASE from "../config";
-import axios from "axios";
-
-axios.get(`${API_BASE}/lost-found/found-items`)
-.then(res => {
-   console.log(res.data);
-})
-.catch(err => {
-   console.error(err);
-});
-
 import React, { useState } from "react";
 import { User, Lock, Mail, UserCheck, Shield, ArrowRight } from "lucide-react";
 import { registerNewUser } from "../../Services/LoginService";
