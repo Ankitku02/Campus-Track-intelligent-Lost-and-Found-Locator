@@ -23,7 +23,7 @@ import edu.infosys.lostAndFoundApplication.service.CampusUserService;
 
 @RestController
 @RequestMapping("/lost-found/")
-@CrossOrigin(origins = "http://localhost:3939")
+@CrossOrigin(origins = "https://campus-track-intelligent-lost-and-f.vercel.app")
 public class LoginController {
 	@Autowired
 	private CampusUserService service;
