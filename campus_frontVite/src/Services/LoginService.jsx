@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Backend base URL
-const BASE_URL = "http://localhost:9999/lost-found/login";
+const BASE_URL = "http://13.60.52.103:9999/lost-found/login";
 
 // Register a new user
 export const registerNewUser = (user) => axios.post(BASE_URL, user);
