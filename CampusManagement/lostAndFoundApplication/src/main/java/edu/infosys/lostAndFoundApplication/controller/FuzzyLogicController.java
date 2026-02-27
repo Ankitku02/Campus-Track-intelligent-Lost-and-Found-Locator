@@ -8,7 +8,7 @@ import edu.infosys.lostAndFoundApplication.service.FuzzyLogic;
 
 @RestController
 @RequestMapping("/lost-found/fuzzy")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3939"})
+@CrossOrigin(origins = "https://campus-track-intelligent-lost-and-f.vercel.app")
 public class FuzzyLogicController {
 
     @Autowired
