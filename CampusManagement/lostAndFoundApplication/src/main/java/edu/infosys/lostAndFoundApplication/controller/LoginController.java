@@ -42,12 +42,12 @@ public class LoginController {
 		service.save(user);
 	}
 	 @DeleteMapping("login/student/{username}")
-	    public void deleteStudent(@PathVariable String username) {
+	    public void deleteStudent(@PathVariable("username") String username) {
 	        service.deleteStudentByUsername(username);
 	    }
  
 	@GetMapping("/login/{userId}/{password}")
-	public String validateUser(@PathVariable String userId,@PathVariable String password) {
+	public String validateUser(@PathVariable("userId") String userId,@PathVariable("password") String password) {
 		String role="false";
 		try {
 			 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userId, password));

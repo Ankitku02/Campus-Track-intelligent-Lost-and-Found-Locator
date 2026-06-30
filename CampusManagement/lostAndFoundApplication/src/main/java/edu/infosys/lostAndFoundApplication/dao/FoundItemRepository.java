@@ -14,5 +14,5 @@ public interface FoundItemRepository extends JpaRepository<FoundItem, String> {
 
     @Query(value = "SELECT MAX(CAST(SUBSTRING(found_item_id, 2) AS UNSIGNED)) FROM found_item", nativeQuery = true)
     Long findMaxIdNumber();
-    
-    }
+
+}

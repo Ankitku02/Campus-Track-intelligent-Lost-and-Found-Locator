@@ -28,8 +28,6 @@ public class LostItemService {
         return lostItemDao.findAll();
     }
 
-
-
     public Optional<LostItem> getLostItemById(String id) {
         return lostItemDao.findById(id);
     }

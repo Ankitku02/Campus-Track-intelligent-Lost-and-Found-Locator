@@ -30,7 +30,8 @@ public class CampusUser extends User{
 		this.email = email2;
 		this.role = role2;
 	}
-    public String getUsername() {
+ // getter and setters
+    public String getUsername() {               
 		return username;
 	}
 	public void setUsername(String username) {
