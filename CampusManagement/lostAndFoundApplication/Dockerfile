@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Expose port
-EXPOSE 9999
+EXPOSE 10000
 
 # Run the application
 ENTRYPOINT ["java", "-Xmx512m", "-Xms256m", "-jar", "app.jar"]
