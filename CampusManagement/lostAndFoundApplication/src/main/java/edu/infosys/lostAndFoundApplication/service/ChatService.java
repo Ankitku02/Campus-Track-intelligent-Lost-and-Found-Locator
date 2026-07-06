@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import edu.infosys.lostAndFoundApplication.bean.ChatMessage;
 import edu.infosys.lostAndFoundApplication.dao.ChatMessageRepository;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -18,7 +18,7 @@ public class ChatService {
 
     public ChatMessage saveMessage(ChatMessage message) {
         if (message.getTimestamp() == null) {
-            message.setTimestamp(LocalDateTime.now());
+            message.setTimestamp(Instant.now());
         }
         return chatMessageRepository.save(message);
     }
